@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 16:14:06 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/07 14:05:19 by galemair         ###   ########.fr       */
+/*   Updated: 2018/04/18 16:28:27 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ char				*ft_reduce_str(char *to_reduce, int len);
 void				*ft_reduce(void *to_reduce, size_t to_cut, size_t len);
 void				*ft_merge(void *old1, void *old2, size_t old1_size,
 					size_t old2_size);
+int					ft_char_in_str(const char *str, char c);
 /*
 **	FONCTIONS MANIPULATION LISTES CHAINEES
 */

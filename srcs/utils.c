@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/07 13:49:14 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/09 12:15:54 by galemair         ###   ########.fr       */
+/*   Created: 2018/04/18 17:07:51 by galemair          #+#    #+#             */
+/*   Updated: 2018/04/18 17:51:10 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-
-int		ft_printf(char *str, ...);
-
-#endif
+void	ft_clean_buff(t_buffer *buff)
+{
+	write(1, buff->buff, (buff->i));
+	ft_bzero(buff->buff, BUFF_SIZE);
+	buff->i = 0;
+	(buff->empty)++;
+}

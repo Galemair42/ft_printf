@@ -58,7 +58,8 @@ SRC	=	ft_atoi.c\
 		ft_strtrim.c\
 		ft_tolower.c\
 		ft_toupper.c\
-		ft_reduce.c
+		ft_reduce.c\
+		ft_char_in_str.c
 FLAGS	=	-Wall -Wextra -Werror
 NAME	=	libft.a
 OBJ	=	$(SRC:.c=.o)
