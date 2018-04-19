@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 13:52:13 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/18 18:01:17 by galemair         ###   ########.fr       */
+/*   Updated: 2018/04/19 16:42:28 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		ft_control_center(char *str, va_list args)
 		if (buff.i >= BUFF_SIZE)
 			ft_clean_buff(&buff);
 		if (*str == '%')
-			ft_percentage_parsing(str, &buff, args);
+			str = ft_percentage_parsing(str, &buff, args);
 		(buff.buff)[buff.i] = *str;
 		buff.i++;
 		str++;
@@ -43,11 +43,14 @@ int		ft_printf(char *str, ...)
 	va_end(args);
 	return (ret);
 }
-
+#include <locale.h>
 int	main(int argc, char **argv)
 {
+	char c = 127;
 //	printf("ret = %d\n",ft_printf("Bah ouais Maggle\n"));
-	printf("%lld", atoi(argv[1]));
+	//setlocale(128, "br");
+	//printf("%d", atoi);
+	printf("%ld", atoi(argv[1]));
 	//printf("nombre normal : %d barh : %d et brah %hhd", INT_MAX, INT_MAX + 1, 2147483650);
 	return (0);
 }
