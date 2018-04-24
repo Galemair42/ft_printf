@@ -6,48 +6,30 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 13:52:13 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/23 14:19:00 by galemair         ###   ########.fr       */
+/*   Updated: 2018/04/23 15:43:59 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "ft_printf.h"
-
-int		ft_control_center(char *str, va_list args)
-{
-	t_buffer buff;
-
-	ft_bzero(&buff, sizeof(t_buffer));
-	while(*str)
-	{
-		if (buff.i >= BUFF_SIZE)
-			ft_clean_buff(&buff);
-		if (*str == '%')
-			str = ft_percentage_parsing(str, &buff, args);
-		(buff.buff)[buff.i] = *str;
-		buff.i++;
-		str++;
-	}
-	write(1, buff.buff, (buff.i));
-	return ((buff.empty * BUFF_SIZE) + buff.i);
-}
 
 int		ft_printf(char *str, ...)
 {
 	va_list		args;
 	int			ret;
+	char 		*test;
 
 	ret = 0;
 	va_start(args, str);
-	if (str)
-		ret = ft_control_center(str, args);
+	//printf("%d\n",va_arg(args, int));
+	test = va_arg(args, char*);
+	printf("%s\n",test);
 	va_end(args);
 	return (ret);
 }
-#include <locale.h>
 int	main(int argc, char **argv)
 {
 	char c = 127;
-	printf("ret = %d\n",ft_printf("Bah ouais Maggle\n"));
+	//printf("ret = %d\n",ft_printf("Bah ouais Maggle\n"));
+	ft_printf(argv[1], argv[2]);
 	//setlocale(128, "br");
 	//printf("%d", atoi);
 //	printf("%ld", atoi(argv[1]));

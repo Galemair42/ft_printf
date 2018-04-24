@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 13:49:14 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/19 16:03:36 by galemair         ###   ########.fr       */
+/*   Updated: 2018/04/24 13:36:43 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@
  */
 # define MODIFIERS			"hh ll h l j z"
 
+typedef	enum				e_types
+{
+	CHAR, INT, SHORT_INT, LONG_INT, LONG_LONG_INT,
+	STR, PTR, UCHAR, UINT, USHORT_INT, ULONG_INT,
+	ULONG_LONG_INT, USTR
+}							t_types;
 typedef	union				u_signed_identifier
 {
 	char					i_char;
@@ -40,7 +46,7 @@ typedef	union				u_signed_identifier
 	short int				i_short_int;
 	long int				i_long_int;
 	long long int			i_longlong_int;
-	char					*i_str;	
+	char					*i_str;
 	void					*i_ptr;
 }							t_signed_identifier;
 
@@ -54,6 +60,14 @@ typedef	union				u_unsigned_identifier
 	unsigned char			*i_str;
 }							t_unsigned_identifier;
 
+typedef	struct				s_value
+{
+	t_types					type;
+	t_unsigned_identifier	unsigned_identifier;	
+	t_signed_identifier		signed_identifier;
+
+}							t_value;
+
 typedef struct				s_parse	
 {
 	unsigned int			hashtag;
@@ -65,8 +79,7 @@ typedef struct				s_parse
 	char					converter;
 	int						width;
 	int						precision;
-	t_unsigned_identifier	unsigned_identifier;	
-	t_signed_identifier		signed_identifier;	
+	t_value					value;
 }							t_parse;
 
 typedef	struct				s_buffer
@@ -92,5 +105,8 @@ void						ft_get_expected_types(char *modifiers, t_parse *parsing_datas);
  */
 void						ft_clean_buff(t_buffer *buff);
 char						*ft_get_modifiers(char **str, char *converter);
-
+/*
+ *---------------------------debug.c-------------------------------------------------------
+ */
+void						ft_print(t_parse cool);
 #endif
