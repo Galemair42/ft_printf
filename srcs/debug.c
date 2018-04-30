@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:12:00 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/24 12:19:50 by galemair         ###   ########.fr       */
+/*   Updated: 2018/04/30 16:34:33 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,25 @@
 
 void	ft_print(t_parse cool)
 {
-	printf("hashtag :%ud", cool.hashtag);
-	printf("zero :%ud", cool.zero);
-	printf("minus :%ud", cool.minus);
-	printf("plus :%ud", cool.plus);
-	printf("space :%ud", cool.space);
-	printf("sign :%ud", cool.sign);
-	printf("converter :%us", cool.converter);
-	printf("precision :%d", cool.precision);
-	printf("width :%d", cool.width);
+	printf("hashtag :%u\n", cool.hashtag);
+	printf("zero :%u\n", cool.zero);
+	printf("minus :%u\n", cool.minus);
+	printf("plus :%u\n", cool.plus);
+	printf("space :%u\n", cool.space);
+	printf("sign :%u\n", cool.sign);
+	printf("converter :%c\n", cool.converter);
+	printf("precision :%d\n", cool.precision);
+	if (cool.identifier == ll)
+			printf("identifier :ll\n");	
+	if (cool.identifier == hh)
+			printf("identifier :hh\n");
+	if (cool.identifier == l)
+			printf("identifier :l\n");
+	if (cool.identifier == h)
+			printf("identifier :h\n");
+	if (cool.identifier == j)
+			printf("identifier :j\n");
+	if (cool.identifier == z)
+			printf("identifier :z\n");
+	printf("width :%d\n", cool.width);
 }

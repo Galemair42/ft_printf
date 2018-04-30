@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 13:52:13 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/23 14:19:00 by galemair         ###   ########.fr       */
+/*   Updated: 2018/04/30 18:09:00 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		ft_printf(char *str, ...)
 int	main(int argc, char **argv)
 {
 	char c = 127;
-	printf("ret = %d\n",ft_printf("Bah ouais Maggle\n"));
+	printf("ret = %d\n",ft_printf("%.12hs", c));
 	//setlocale(128, "br");
 	//printf("%d", atoi);
 //	printf("%ld", atoi(argv[1]));

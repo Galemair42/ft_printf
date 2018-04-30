@@ -6,29 +6,34 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 17:07:51 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/19 14:29:53 by galemair         ###   ########.fr       */
+/*   Updated: 2018/04/30 17:59:08 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char 	*ft_get_modifiers(char **str, char *converter)
+int		ft_atoi_custom(char **str)
 {
-	char	*flags;
-	size_t	index;
+	int		sign;
+	int		nb;
 
-	index = 0;
-	flags = MODIFIERS;
-	while (**str != *flags)
-		flags++;
-	while (*flags != ' ' && **str == *flags) 
+	nb = 0;
+	sign = 1;
+	while (**str == '\t' || **str == '\n' || **str == '\r' ||
+			**str == '\v' || **str == '\f' || **str == ' ')
+		(*str)++;
+	if (**str == '-' || **str == '+')
 	{
-		converter[index] = **str;
-		flags++;
-		index++;
+		if (**str == '-')
+			sign = -1;
 		(*str)++;
 	}
-	return (converter);
+	while (**str >= '0' && **str <= '9')
+	{
+		nb = 10 * nb + (**str - 48);
+		(*str)++;
+	}
+	return (nb * sign);
 }
 
 void	ft_clean_buff(t_buffer *buff)
