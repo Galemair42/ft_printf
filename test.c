@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 15:44:04 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/30 17:54:15 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/04 16:45:48 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -56,28 +56,19 @@ void	my_nbr(u_perso val)
 void	manage_test(char *str, ...)
 {
 	va_list	args;
-	long long cool;
-	u_perso val;
+	long long int cool;
 
-	cool = 2147483648;
 	va_start(args, str);
-	//cool = (char)va_arg(args, int);
+	cool = va_arg(args, long int);
 	ft_putnbr(cool);
 	//my_nbr(val);
 	va_end(args);
 }
 int		main(int argc, char **argv)
 {
-	//char c = 'A';
-	//long long int test = 214748367;
-	//manage_test(argv[1], argv[2][0], c, test, argv[3]);
-	t_cool	cool;
-//	cool = hh;
-//	if (cool == ll)
-//		printf("success\n");
-//	if (cool != ll)
-//		printf("failure\n");
-	printf("cool %p\n", cool);
-
+	long long int cool;
+	printf("%d\n", INT_MAX);
+	cool = 2147483648;
+	manage_test(argv[1], cool);
 	return (0);
 }

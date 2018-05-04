@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 13:49:14 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/30 17:58:48 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/04 18:06:49 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 
 
 # define BUFF_SIZE			100
-# define CONVERTERS			"SspdDioOuUxXcC"
+# define CONVERTERS			"SspdDioOuUxXcC%"
 # define SIGNED_CONV		"dDicC"	
 # define UNSIGNED_CONV		"oOuXxpSs"
 # define FLAGS				"#0+- "
 /*
- * IMPORTANT ! Mettre modifiers composes de deux lettres avant
+ * IMPORTANT ! Put 2 letters modifiers first 
  */
 # define MODIFIERS			"hh ll h l j z"
 
@@ -48,7 +48,7 @@ typedef struct				s_parse
 	int						width;
 	int						precision;
 	t_types					identifier;
-	long long				value;
+	intmax_t				value;
 }							t_parse;
 
 typedef	struct				s_buffer
@@ -79,4 +79,8 @@ int							ft_atoi_custom(char **str);
  *---------------------------debug.c-------------------------------------------------------
  */
 void						ft_print(t_parse cool);
+/*
+ *---------------------------ft_manage_conv.c----------------------------------------------
+ */
+void						ft_manage_conv(t_parse datas, t_buffer *buff, va_list args);
 #endif

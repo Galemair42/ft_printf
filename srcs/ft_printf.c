@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 13:52:13 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/30 18:09:00 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/04 18:08:10 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ int		ft_control_center(char *str, va_list args)
 		if (buff.i >= BUFF_SIZE)
 			ft_clean_buff(&buff);
 		if (*str == '%')
-			str = ft_percentage_parsing(str, &buff, args);
-		(buff.buff)[buff.i] = *str;
-		buff.i++;
+			str = ft_percentage_parsing(str + 1, &buff, args);
+		else
+		{
+			(buff.buff)[buff.i] = *str;
+			buff.i++;
+		}
 		str++;
 	}
 	write(1, buff.buff, (buff.i));
@@ -47,7 +50,7 @@ int		ft_printf(char *str, ...)
 int	main(int argc, char **argv)
 {
 	char c = 127;
-	printf("ret = %d\n",ft_printf("%.12hs", c));
+	ft_printf("%d", 123);
 	//setlocale(128, "br");
 	//printf("%d", atoi);
 //	printf("%ld", atoi(argv[1]));
