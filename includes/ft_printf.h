@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 13:49:14 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/04 18:06:49 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:06:06 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 typedef	enum				e_types
 {
-	ll, hh, h, l, j, z
+	none, ll, hh, h, l, j, z
 }							t_types;
 
 typedef struct				s_parse	
@@ -48,7 +48,6 @@ typedef struct				s_parse
 	int						width;
 	int						precision;
 	t_types					identifier;
-	intmax_t				value;
 }							t_parse;
 
 typedef	struct				s_buffer
@@ -83,4 +82,8 @@ void						ft_print(t_parse cool);
  *---------------------------ft_manage_conv.c----------------------------------------------
  */
 void						ft_manage_conv(t_parse datas, t_buffer *buff, va_list args);
+/*
+ *---------------------------manage_flag.c-------------------------------------------------
+ */
+void						manage_flags(int size, t_parse *datas, char signe);
 #endif

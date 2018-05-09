@@ -6,11 +6,12 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 13:52:13 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/04 18:08:10 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:02:09 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <locale.h>
 
 int		ft_control_center(char *str, va_list args)
 {
@@ -30,7 +31,7 @@ int		ft_control_center(char *str, va_list args)
 		}
 		str++;
 	}
-	write(1, buff.buff, (buff.i));
+	//write(1, buff.buff, (buff.i));
 	return ((buff.empty * BUFF_SIZE) + buff.i);
 }
 
@@ -46,14 +47,12 @@ int		ft_printf(char *str, ...)
 	va_end(args);
 	return (ret);
 }
-#include <locale.h>
 int	main(int argc, char **argv)
 {
-	char c = 127;
-	ft_printf("%d", 123);
-	//setlocale(128, "br");
-	//printf("%d", atoi);
-//	printf("%ld", atoi(argv[1]));
-	//printf("nombre normal : %d barh : %d et brah %hhd", INT_MAX, INT_MAX + 1, 2147483650);
+	long int c = -128;
+
+	ft_printf("%12d", c);
+	printf("\n VRAI PRINTF %+ld", c);
+	printf("\n TEST PRINTF |%d|", 123);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:12:00 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/04 17:49:41 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/08 16:51:32 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,18 @@ void	ft_print(t_parse cool)
 	printf("converter :%c\n", cool.converter);
 	printf("precision :%d\n", cool.precision);
 	if (cool.identifier == ll)
-			printf("identifier :ll\n");	
-	if (cool.identifier == hh)
-			printf("identifier :hh\n");
-	if (cool.identifier == l)
-			printf("identifier :l\n");
-	if (cool.identifier == h)
-			printf("identifier :h\n");
-	if (cool.identifier == j)
-			printf("identifier :j\n");
-	if (cool.identifier == z)
-			printf("identifier :z\n");
+		printf("identifier :ll\n");	
+	else if (cool.identifier == hh)
+		printf("identifier :hh\n");
+	else if (cool.identifier == l)
+		printf("identifier :l\n");
+	else if (cool.identifier == h)
+		printf("identifier :h\n");
+	else if (cool.identifier == j)
+		printf("identifier :j\n");
+	else if (cool.identifier == z)
+		printf("identifier :z\n");
+	else
+		printf("No identifier\n");
 	printf("width :%d\n", cool.width);
 }

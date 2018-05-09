@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_converter.c                                 :+:      :+:    :+:   */
+/*   manage_flag.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/04 12:57:45 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/07 14:28:31 by galemair         ###   ########.fr       */
+/*   Created: 2018/05/08 11:23:50 by galemair          #+#    #+#             */
+/*   Updated: 2018/05/09 19:01:19 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "manage_conv.h"
 
-void	ft_manage_conv(t_parse datas, t_buffer *buff, va_list args)
+void	manage_flags(int size, t_parse *datas, char signe)
 {
-	size_t i;
-
-	i = 0;
-	while (i < FUNCTION_NUMBER)
-	{
-		if (ft_char_in_str(g_conv[i].str, datas.converter))
-			g_conv[i].f(&datas, buff, args);
-		i++;
-	}
+	printf("signe = %c\n", signe);
+	datas->precision -= size;
+	datas->precision = datas->precision >= 0 ? datas->precision : 0;
+	if ((datas->plus == 1 && signe == '+') || signe == '-' || datas->space == 1)
+		size++;
+	datas->width -= (datas->precision + size);
 }

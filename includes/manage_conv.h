@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 12:56:22 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/04 17:41:26 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/07 14:47:52 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ void		manage_char(t_parse *datas, t_buffer *buff, va_list args);
 void		manage_string(t_parse *datas, t_buffer *buff, va_list args);
 void		manage_ptr(t_parse *datas, t_buffer *buff, va_list args);
 void		manage_pct(t_parse *datas, t_buffer *buff, va_list args);
+void		manage_unsignedint(t_parse *datas, t_buffer *buff, va_list args);
 
-#define FUNCTION_NUMBER 5
+#define FUNCTION_NUMBER 6
 
-static const t_conv g_conv[] = {
-{"bdiouxXDOU", &manage_int},
+const t_conv g_conv[] = {
+{"diD", &manage_int},
+{"ouxXOU", &manage_unsignedint},
 {"Cc", &manage_char},
 {"Ss", &manage_string},
 {"p", &manage_ptr},

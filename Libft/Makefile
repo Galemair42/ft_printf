@@ -62,19 +62,24 @@ SRC	=	ft_atoi.c\
 		ft_char_in_str.c
 FLAGS	=	-Wall -Wextra -Werror
 NAME	=	libft.a
-OBJ	=	$(SRC:.c=.o)
+
+OBJS	=	$(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME):
-	gcc -c $(FLAGS) $(SRC)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+$(NAME): $(OBJS)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
+	@echo "\n\033[32mLIBFT COMPILED\n"
+
+%.o : %.c
+	@printf "✅ "	
+	@gcc -o $@ -c $< $(FLAGS)
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJS)
 
 fclean:clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re:fclean all

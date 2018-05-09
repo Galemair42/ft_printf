@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 17:14:21 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/05 17:08:07 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/09 18:33:51 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	ft_get_modifiers(char **str, t_parse *parsing_datas)
 		index++;
 		(*str)++;
 	}
+	if (index > 0)
+		(*str)--;
 	modifiers[index] = '\0';
 	ft_get_modifiers2(modifiers, parsing_datas);
 }
@@ -73,11 +75,11 @@ char	*ft_percentage_parsing(char *str, t_buffer *buff, va_list args)
 	while (*str)
 	{
 		if (ft_isdigit(*str))
-			parsing_datas.precision = ft_atoi_custom(&str);
+			parsing_datas.width = ft_atoi_custom(&str);
 		else if (*str == '.')
 		{
 			str++;
-			parsing_datas.width = ft_atoi_custom(&str);
+			parsing_datas.precision = ft_atoi_custom(&str);
 		}
 		else if (ft_char_in_str(FLAGS, *str))
 			ft_update_struct(*str, &parsing_datas);
