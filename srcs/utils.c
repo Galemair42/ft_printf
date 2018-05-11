@@ -6,13 +6,13 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 17:07:51 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/04 17:48:55 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/11 19:05:52 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_atoi_custom(char **str)
+int			ft_atoi_custom(char **str)
 {
 	int		sign;
 	int		nb;
@@ -37,10 +37,14 @@ int		ft_atoi_custom(char **str)
 	return (nb * sign);
 }
 
-void	ft_clean_buff(t_buffer *buff)
+char		get_rank(int n, int maj)
 {
-	write(1, buff->buff, (buff->i));
-	ft_bzero(buff->buff, BUFF_SIZE);
-	buff->i = 0;
-	(buff->empty)++;
+	char *minu;
+	char *maju;
+
+	minu = MINUSCULES;
+	maju = MAJUSCULES;
+	if (maj == 1)
+		return (maju[n]);
+	return (minu[n]);
 }

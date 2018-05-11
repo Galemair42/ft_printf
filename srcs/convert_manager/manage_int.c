@@ -6,23 +6,49 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 16:52:23 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/09 18:32:35 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/11 20:10:59 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-void	ft_putnbra(intmax_t n)
+int			calc_intsize(intmax_t value, int base)
 {
-	if (n < 0)
+	int size;
+
+	size = 0;
+	if (value <= 0)
+		value *= -1;
+	while (value >= 1)
 	{
-		ft_putchar('-');
-		n *= -1;
+		size++;
+		value /= base;
 	}
-	if (n >= 10)
-		ft_putnbra(n / 10);
-	ft_putchar((n % 10) + '0');
+	return (size);
+}
+
+void	ft_putnbr_buff(intmax_t value, t_buffer *buff, int base)
+{
+	if (value < 0)
+		value *= -1;
+	if (value >= base)
+		ft_putnbr_buff(value / base, buff, base);
+	ft_putnchar_buff(buff, (value % base) + '0', 1);
+}
+
+void	manage_int_flag(t_parse *datas, t_buffer *buff, intmax_t value)
+{
+	if (datas->minus == 0 && datas->zero == 0)
+		ft_putnchar_buff(buff, ' ', datas->width);
+	if (value < 0)
+		ft_putnchar_buff(buff, '-', 1);
+	else if (datas->space == 1)
+		ft_putnchar_buff(buff, ' ', 1);
+	else if (datas->plus == 1)
+		ft_putnchar_buff(buff, '+', 1);
+	if (datas->zero == 1)
+		ft_putnchar_buff(buff, '0', datas->width);
+	ft_putnchar_buff(buff, '0', datas->precision);
 }
 
 void	get_value(t_parse *datas, va_list args, intmax_t *value)
@@ -43,40 +69,19 @@ void	get_value(t_parse *datas, va_list args, intmax_t *value)
 		*value = (int)va_arg(args, int);
 }
 
-int			calc_intsize(intmax_t value, int base)
-{
-	int size;
-
-	value = (intmax_t)value;
-	size = 0;
-	if (value <= 0)
-		value *= -1;
-	while (value >= 1)
-	{
-		size++;
-		value /= base;
-	}
-	return (size);
-}
 void		manage_int(t_parse *datas, t_buffer *buff, va_list args)
 {
 	intmax_t 	value; 
 	int			size;
+	int			precision;
 
-	ft_putstr("hello bienvenue dans la gestion de int \n\n");
+	precision = datas->precision;
 	get_value(datas, args, &value);
 	size = calc_intsize(value, 10);
-	ft_print(*datas);
-	printf("\n");
-	manage_flags(size, datas, value >= 0 ? '+' : '-');
-	ft_print(*datas);
+	calc_int_flags(size, datas, value >= 0 ? '+' : '-');
+	manage_int_flag(datas, buff, value);
+	if (precision != 0 || value != 0)
+		ft_putnbr_buff(value, buff, 10);
+	if (datas->minus == 1)
+		ft_putnchar_buff(buff, ' ', datas->width);
 }
-//int	main(int args, char **argv)
-//{
-//	intmax_t test;
-//	
-//	test = (int)test;
-//	test = 214748364883;
-//	printf("%d\n", calc_intsize(test, atoi(argv[2])));
-//	return (0);
-//}

@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 17:14:21 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/09 18:33:51 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/11 16:55:37 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ void	ft_update_struct(char c, t_parse *parsing_datas)
 {
 	if (c == '#')
 		parsing_datas->hashtag = 1;
-	else if (c == '0')
+	else if (c == '0' && parsing_datas->minus == 0)
 		parsing_datas->zero = 1;
 	else if (c == '+')
 		parsing_datas->plus = 1;
 	else if (c == '-')
+	{
 		parsing_datas->minus = 1;
+		parsing_datas->zero = 0;
+	}
 	else if (c == ' ')
 		parsing_datas->space = 1;
 }
@@ -72,9 +75,10 @@ char	*ft_percentage_parsing(char *str, t_buffer *buff, va_list args)
 
 	flag_modifier = 0;
 	ft_bzero(&parsing_datas, sizeof(t_parse));
+	parsing_datas.precision = -1;
 	while (*str)
 	{
-		if (ft_isdigit(*str))
+		if (ft_isdigit(*str) && *str != '0')
 			parsing_datas.width = ft_atoi_custom(&str);
 		else if (*str == '.')
 		{

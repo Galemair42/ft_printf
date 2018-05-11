@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 13:52:13 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/09 19:02:09 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/11 20:43:16 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		ft_control_center(char *str, va_list args)
 		}
 		str++;
 	}
-	//write(1, buff.buff, (buff.i));
+	write(1, buff.buff, (buff.i));
 	return ((buff.empty * BUFF_SIZE) + buff.i);
 }
 
@@ -49,10 +49,13 @@ int		ft_printf(char *str, ...)
 }
 int	main(int argc, char **argv)
 {
-	long int c = -128;
-
-	ft_printf("%12d", c);
-	printf("\n VRAI PRINTF %+ld", c);
-	printf("\n TEST PRINTF |%d|", 123);
+	char c = 127;
+	int myret;
+	int ret;
+	myret = ft_printf("Salut a tous %#X comment ccccccc1a va \n%-+12.43O mais bon\n", 21, 1234);
+	ret = printf("Salut a tous %#X comment ccccccc1a va \n%-+12.43O mais bon\n", 21, 1234);
+	//ret = printf("|%hc|\n", c);
+	printf("my ret    = %d\ntheir ret = %d\n", myret, ret);
+	//printf("\n TEST PRINTF |%d|", 123);
 	return (0);
 }

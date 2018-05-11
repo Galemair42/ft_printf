@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 13:49:14 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/09 19:06:06 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/11 20:20:37 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define SIGNED_CONV		"dDicC"	
 # define UNSIGNED_CONV		"oOuXxpSs"
 # define FLAGS				"#0+- "
+# define MINUSCULES			"0123456789abcdef"
+# define MAJUSCULES			"0123456789ABCDEF"
 /*
  * IMPORTANT ! Put 2 letters modifiers first 
  */
@@ -56,7 +58,6 @@ typedef	struct				s_buffer
 	int						i;
 	int						empty;
 }							t_buffer;
-
 /*
  * -------------------------ft_printf.c--------------------------------------------------
  */
@@ -72,8 +73,8 @@ void						ft_get_modifiers2(char *modifiers, t_parse *parsing_datas);
 /*
  * --------------------------ft_utils.c---------------------------------------------------
  */
-void						ft_clean_buff(t_buffer *buff);
 int							ft_atoi_custom(char **str);
+char						get_rank(int n, int maj);
 /*
  *---------------------------debug.c-------------------------------------------------------
  */
@@ -85,5 +86,16 @@ void						ft_manage_conv(t_parse datas, t_buffer *buff, va_list args);
 /*
  *---------------------------manage_flag.c-------------------------------------------------
  */
-void						manage_flags(int size, t_parse *datas, char signe);
+void						calc_int_flags(int size, t_parse *datas, char signe);
+void						calc_uint_flags(int size, t_parse *datas);
+/*
+ * -------------------------manage_buffer.c------------------------------------------------
+ */
+void						ft_clean_buff(t_buffer *buff);
+void						ft_putnchar_buff(t_buffer *buff, char c, int n);
+void						ft_putstr_buff(t_buffer *buff, char *str);
+/*
+ *-------------------------manage_unsignedint.c-------------------------------------------
+ */
+void	ft_uputnbr_buff(uintmax_t value, t_buffer *buff, int base, int maj);
 #endif
