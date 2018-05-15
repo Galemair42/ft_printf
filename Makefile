@@ -6,7 +6,7 @@
 #    By: galemair <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/05 14:48:14 by galemair          #+#    #+#              #
-#    Updated: 2018/05/11 17:04:03 by galemair         ###   ########.fr        #
+#    Updated: 2018/05/15 11:54:58 by galemair         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,11 @@ SRCS		=	srcs/ft_percentage_parsing.c				\
 				srcs/convert_manager/manage_string.c		\
 				srcs/convert_manager/manage_unsignedint.c	\
 
-LIB_OBJS	=	Libft/ft_bzero.o		\
-			Libft/ft_char_in_str.o		\
-			Libft/ft_memset.o		\
-			Libft/ft_isdigit.o		\
-			Libft/ft_strlen.o
+LIB_OBJS	=	libft/ft_bzero.o		\
+			libft/ft_char_in_str.o		\
+			libft/ft_memset.o		\
+			libft/ft_isdigit.o		\
+			libft/ft_strlen.o
 
 OBJS		=	$(SRCS:.c=.o) 
 
