@@ -47,15 +47,16 @@ int		ft_printf(char *str, ...)
 	va_end(args);
 	return (ret);
 }
-int	main(int argc, char **argv)
-{
-	char c = 127;
-	int myret;
-	int ret;
-	myret = ft_printf("%#hhx\n", c);
-	ret = printf("|%S|\n", L"salut");
-	//ret = printf("|%hc|\n", c);
-	printf("my ret    = %d\ntheir ret = %d\n", myret, ret);
-	//printf("\n TEST PRINTF |%d|", 123);
-	return (0);
-}
+//int	main(int argc, char **argv)
+//{
+//	setlocale(LC_ALL, "");
+//	char c = 127;
+//	int myret;
+//	int ret;
+//	myret = ft_printf("|%.p|\n", 0);
+//	ret = printf("|%.p|\n", 0);
+////	myret = ft_printf("|%5.d|%5.0d|\n", 0, 0);
+////	ret = printf("|%5.d|%5.0d|\n", 0, 0);
+//	printf("my ret    = %d\ntheir ret = %d\n", myret, ret);
+//	return (0);
+//}

@@ -75,6 +75,8 @@ void						ft_get_modifiers2(char *modifiers, t_parse *parsing_datas);
  */
 int							ft_atoi_custom(char **str);
 char						get_rank(int n, int maj);
+int						get_char_size(wchar_t value);
+int						ft_strlenbytes(wchar_t *str);
 /*
  *---------------------------debug.c-------------------------------------------------------
  */
@@ -92,10 +94,18 @@ void						calc_uint_flags(int size, t_parse *datas);
  * -------------------------manage_buffer.c------------------------------------------------
  */
 void						ft_clean_buff(t_buffer *buff);
-void						ft_putnchar_buff(t_buffer *buff, char c, int n);
+void						ft_putnchar_buff(t_buffer *buff, unsigned char c, int n);
 void						ft_putstr_buff(t_buffer *buff, char *str);
+void						ft_putstrn_buff(t_buffer *buff, char *str, int n);
 /*
  *-------------------------manage_unsignedint.c-------------------------------------------
  */
-void	ft_uputnbr_buff(uintmax_t value, t_buffer *buff, int base, int maj);
+void						ft_uputnbr_buff(uintmax_t value, t_buffer *buff, int base, int maj);
+int						calc_uintsize(uintmax_t value, int base);
+/*
+ *-------------------------manage_unicode.c----------------------------------------------
+ */
+void						octets2_unicode(unsigned int value, t_buffer *buff);
+void						octets3_unicode(unsigned int value, t_buffer *buff);
+void						octets4_unicode(unsigned int value, t_buffer *buff);
 #endif

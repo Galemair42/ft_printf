@@ -58,10 +58,8 @@ int main(int argc, char **argv)
         unsigned int mask2= 14712960;
         unsigned int mask3= 4034953344;
  
-		ft_uputnbr_buff(value, 2);
-		ft_putchar('\n');
         unsigned int v = value;
-        int size = 10;
+        int size = 13;
         int res = 0;
         //printf("size %d\n", size);
         unsigned char octet;

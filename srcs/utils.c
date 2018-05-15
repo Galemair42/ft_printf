@@ -48,3 +48,26 @@ char		get_rank(int n, int maj)
 		return (maju[n]);
 	return (minu[n]);
 }
+int		ft_strlenbytes(wchar_t *str)
+{
+	int size;
+
+	size = 0;
+	while (*str)
+	{
+		size += get_char_size(*str);	
+		str++;
+	}
+	return (size);
+}
+int		get_char_size(wchar_t c)
+{
+	if (c <= 127)
+		return (1);
+	else if (c <= 2047)
+		return (2);
+	else if (c <= 65535)
+		return (3);
+	else 
+		return (4);
+}

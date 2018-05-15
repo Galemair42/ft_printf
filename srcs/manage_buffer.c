@@ -12,7 +12,7 @@
 
 #include <ft_printf.h>
 
-void	ft_putnchar_buff(t_buffer *buff, char c, int n)
+void	ft_putnchar_buff(t_buffer *buff, unsigned char c, int n)
 {
 	int i;
 
@@ -32,6 +32,18 @@ void	ft_putstr_buff(t_buffer *buff, char *str)
 	{
 		ft_putnchar_buff(buff, *str, 1);
 		str++;
+	}
+}
+
+void	ft_putstrn_buff(t_buffer *buff, char *str, int n)
+{
+	int i;
+
+	i = 0;
+	while (str[i] && i < n)
+	{
+		ft_putnchar_buff(buff, str[i], 1);
+		i++;
 	}
 }
 void	ft_clean_buff(t_buffer *buff)

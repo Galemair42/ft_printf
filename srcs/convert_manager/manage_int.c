@@ -29,6 +29,11 @@ int			calc_intsize(intmax_t value, int base)
 
 void	ft_putnbr_buff(intmax_t value, t_buffer *buff, int base)
 {
+	if (value == -9223372036854775808)
+	{
+		ft_putstr_buff(buff, "9223372036854775808");
+		return ;
+	}
 	if (value < 0)
 		value *= -1;
 	if (value >= base)
@@ -42,10 +47,10 @@ void	manage_int_flag(t_parse *datas, t_buffer *buff, intmax_t value)
 		ft_putnchar_buff(buff, ' ', datas->width);
 	if (value < 0)
 		ft_putnchar_buff(buff, '-', 1);
-	else if (datas->space == 1)
-		ft_putnchar_buff(buff, ' ', 1);
 	else if (datas->plus == 1)
 		ft_putnchar_buff(buff, '+', 1);
+	else if (datas->space == 1)
+		ft_putnchar_buff(buff, ' ', 1);
 	if (datas->zero == 1)
 		ft_putnchar_buff(buff, '0', datas->width);
 	ft_putnchar_buff(buff, '0', datas->precision);
@@ -78,9 +83,11 @@ void		manage_int(t_parse *datas, t_buffer *buff, va_list args)
 	precision = datas->precision;
 	get_value(datas, args, &value);
 	size = calc_intsize(value, 10);
+	if (precision == -1 && value == 0)
+		size++;
 	calc_int_flags(size, datas, value >= 0 ? '+' : '-');
 	manage_int_flag(datas, buff, value);
-	if (precision != 0 || value != 0)
+	if (!(value == 0 && (precision >= 0)))
 		ft_putnbr_buff(value, buff, 10);
 	if (datas->minus == 1)
 		ft_putnchar_buff(buff, ' ', datas->width);

@@ -36,8 +36,8 @@ void	manage_uint_flag(t_parse *datas, t_buffer *buff, uintmax_t value, int base)
 {
 	if (datas->minus == 0 && datas->zero == 0)
 		ft_putnchar_buff(buff, ' ', datas->width);
-	if (datas->hashtag == 1 && base == 16)
-		ft_putstr_buff(buff, "0x");
+	if (datas->hashtag == 1 && base == 16 && value > 0)
+		ft_putstr_buff(buff, datas->converter == 'x' ? "0x" : "0X");
 	if (datas->hashtag == 1 && base == 8)
 		ft_putnchar_buff(buff, '0', 1);
 	if (datas->zero == 1)
@@ -47,20 +47,21 @@ void	manage_uint_flag(t_parse *datas, t_buffer *buff, uintmax_t value, int base)
 
 void	get_uvalue(t_parse *datas, va_list args, uintmax_t *value)
 {
-	if (datas->identifier == hh)
+	if (datas->identifier == l || ft_char_in_str("OU", datas->converter))
+		*value = (unsigned long int)va_arg(args, long int);
+	else if (datas->identifier == hh)
 		*value = (unsigned char)va_arg(args, int);
 	else if (datas->identifier == ll)
 		*value = (unsigned long long int)va_arg(args, long long int);
 	else if (datas->identifier == h)
 		*value = (unsigned short int)va_arg(args, int);
-	else if (datas->identifier == l || ft_char_in_str("OU", datas->converter))
-		*value = (unsigned long int)va_arg(args, long int);
+
 	else if (datas->identifier == j)
 		*value = va_arg(args, uintmax_t);
 	else if (datas->identifier == z)
 		*value = (size_t)va_arg(args, size_t);
 	else
-		*value = (int)va_arg(args, int);
+		*value = (unsigned int)va_arg(args, int);
 }
 
 void		manage_unsignedint(t_parse *datas, t_buffer *buff, va_list args)
@@ -78,9 +79,11 @@ void		manage_unsignedint(t_parse *datas, t_buffer *buff, va_list args)
 	precision = datas->precision;
 	get_uvalue(datas, args, &value);
 	size = calc_uintsize(value, base);
+	if (precision == -1 && value == 0)
+		size++;
 	calc_uint_flags(size, datas);
 	manage_uint_flag(datas, buff, value, base);
-	if (precision != 0 || value != 0)
+	if (!(value == 0 && (precision >= 0)))
 		datas->converter == 'X' ? ft_uputnbr_buff(value, buff, base, 1) :
 		ft_uputnbr_buff(value, buff, base, 0);
 	if (datas->minus == 1)

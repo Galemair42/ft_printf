@@ -13,7 +13,7 @@
 
 RM			=	rm -rf
 
-NAME		=	ft_printf
+NAME		=	libftprintf.a
 
 LIBFT		=	libft/
 
@@ -22,6 +22,7 @@ SRCS		=	srcs/ft_percentage_parsing.c				\
 				srcs/ft_printf.c							\
 				srcs/utils.c								\
 				srcs/manage_buffer.c						\
+				srcs/manage_unicode.c				\
 				srcs/debug.c								\
 				srcs/manage_flag.c							\
 				srcs/convert_manager/manage_char.c			\
@@ -30,6 +31,12 @@ SRCS		=	srcs/ft_percentage_parsing.c				\
 				srcs/convert_manager/manage_ptr.c			\
 				srcs/convert_manager/manage_string.c		\
 				srcs/convert_manager/manage_unsignedint.c	\
+
+LIB_OBJS	=	Libft/ft_bzero.o		\
+			Libft/ft_char_in_str.o		\
+			Libft/ft_memset.o		\
+			Libft/ft_isdigit.o		\
+			Libft/ft_strlen.o
 
 OBJS		=	$(SRCS:.c=.o) 
 
@@ -43,7 +50,7 @@ JAUNE		= \033[33m
 BLEU		= \033[34m
 
 $(NAME): lib $(OBJS)
-	@gcc -o	$(NAME) $(OBJS) -I $(INCLUDES) -L $(LIBFT) -lft
+	@ar rc 	$(NAME) $(OBJS) $(LIB_OBJS)
 	@echo "\nFT_PRINTF COMPILED"
 
 all:		$(NAME)
