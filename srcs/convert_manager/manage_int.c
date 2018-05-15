@@ -6,13 +6,13 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 16:52:23 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/11 20:10:59 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/15 22:39:16 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			calc_intsize(intmax_t value, int base)
+int		calc_intsize(intmax_t value, int base)
 {
 	int size;
 
@@ -29,7 +29,7 @@ int			calc_intsize(intmax_t value, int base)
 
 void	ft_putnbr_buff(intmax_t value, t_buffer *buff, int base)
 {
-	if (value == -9223372036854775808)
+	if (value == LONG_MIN)
 	{
 		ft_putstr_buff(buff, "9223372036854775808");
 		return ;
@@ -58,14 +58,14 @@ void	manage_int_flag(t_parse *datas, t_buffer *buff, intmax_t value)
 
 void	get_value(t_parse *datas, va_list args, intmax_t *value)
 {
-	if (datas->identifier == hh)
+	if (datas->identifier == l || datas->converter == 'D')
+		*value = (long int)va_arg(args, long int);
+	else if (datas->identifier == hh)
 		*value = (char)va_arg(args, int);
 	else if (datas->identifier == ll)
 		*value = (long long int)va_arg(args, long long int);
 	else if (datas->identifier == h)
 		*value = (short int)va_arg(args, int);
-	else if (datas->identifier == l || datas->converter == 'D')
-		*value = (long int)va_arg(args, long int);
 	else if (datas->identifier == j)
 		*value = va_arg(args, intmax_t);
 	else if (datas->identifier == z)
@@ -74,9 +74,9 @@ void	get_value(t_parse *datas, va_list args, intmax_t *value)
 		*value = (int)va_arg(args, int);
 }
 
-void		manage_int(t_parse *datas, t_buffer *buff, va_list args)
+void	manage_int(t_parse *datas, t_buffer *buff, va_list args)
 {
-	intmax_t 	value; 
+	intmax_t	value;
 	int			size;
 	int			precision;
 

@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 12:57:45 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/11 17:34:24 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/15 14:23:17 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_manage_conv(t_parse datas, t_buffer *buff, va_list args)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < FUNCTION_NUMBER)

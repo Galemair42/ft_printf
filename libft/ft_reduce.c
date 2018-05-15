@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 18:36:40 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/13 16:08:42 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/15 19:52:05 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_reduce(void *to_reduce, size_t to_cut, size_t len)
 {
-	unsigned char *new;
-	size_t i;
+	unsigned char	*new;
+	size_t			i;
 
 	i = 0;
 	new = NULL;
@@ -25,7 +25,7 @@ void	*ft_reduce(void *to_reduce, size_t to_cut, size_t len)
 		return (NULL);
 	}
 	if ((new = ft_memalloc(len - to_cut)) == NULL)
-			return (NULL);
+		return (NULL);
 	while (to_cut < len)
 	{
 		new[i] = ((unsigned char*)to_reduce)[to_cut];

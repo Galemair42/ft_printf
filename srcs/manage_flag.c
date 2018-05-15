@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/08 11:23:50 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/11 18:32:09 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/15 20:07:14 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	calc_uint_flags(int size, t_parse *datas)
 	if (datas->precision >= 0)
 		datas->zero = 0;
 	datas->precision -= size;
+	if ((datas->converter == 'o' || datas->converter == 'O') &&
+		datas->hashtag == 1)
+		datas->precision -= 1;
 	datas->precision = datas->precision >= 0 ? datas->precision : 0;
 	if (ft_char_in_str("Xx", datas->converter) && datas->hashtag == 1)
 		size += 2;

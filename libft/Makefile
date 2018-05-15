@@ -70,7 +70,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
-	@echo "\n\033[32mLIBFT SUCCESSFULLY COMPILED"
+	@echo "\n\033[32mLIBFT COMPILED\n"
 
 %.o : %.c
 	@printf "✅ "	

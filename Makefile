@@ -6,7 +6,7 @@
 #    By: galemair <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/05 14:48:14 by galemair          #+#    #+#              #
-#    Updated: 2018/05/15 11:54:58 by galemair         ###   ########.fr        #
+#    Updated: 2018/05/15 22:43:34 by galemair         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ SRCS		=	srcs/ft_percentage_parsing.c				\
 				srcs/utils.c								\
 				srcs/manage_buffer.c						\
 				srcs/manage_unicode.c				\
-				srcs/debug.c								\
 				srcs/manage_flag.c							\
 				srcs/convert_manager/manage_char.c			\
 				srcs/convert_manager/manage_int.c			\
@@ -55,8 +54,6 @@ $(NAME): lib $(OBJS)
 
 all:		$(NAME)
 
-x:			$(NAME)
-	@./$(NAME)
 lib:
 	@make -C libft/
 
@@ -73,6 +70,5 @@ fclean: clean
 	@make fclean -C libft/
 	@$(RM) $(NAME)
 re:	fclean all
-
 
 .PHONY: clean fclean re

@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 16:15:44 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/10 18:22:04 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/15 19:51:40 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_merge(void *old1, void *old2, size_t old1_size, size_t old2_size)
 {
-	unsigned char *new;
-	size_t i;
+	unsigned char	*new;
+	size_t			i;
 
 	i = 0;
 	if (old1_size + old2_size <= 0)

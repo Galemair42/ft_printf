@@ -6,46 +6,46 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 17:14:21 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/11 16:55:37 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/15 22:38:44 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_update_struct(char c, t_parse *parsing_datas)
+void	ft_update_struct(char c, t_parse *datas)
 {
 	if (c == '#')
-		parsing_datas->hashtag = 1;
-	else if (c == '0' && parsing_datas->minus == 0)
-		parsing_datas->zero = 1;
+		datas->hashtag = 1;
+	else if (c == '0' && datas->minus == 0)
+		datas->zero = 1;
 	else if (c == '+')
-		parsing_datas->plus = 1;
+		datas->plus = 1;
 	else if (c == '-')
 	{
-		parsing_datas->minus = 1;
-		parsing_datas->zero = 0;
+		datas->minus = 1;
+		datas->zero = 0;
 	}
 	else if (c == ' ')
-		parsing_datas->space = 1;
+		datas->space = 1;
 }
 
-void	ft_get_modifiers2(char *modifiers, t_parse *parsing_datas)
+void	ft_get_modifiers2(char *modifiers, t_parse *datas)
 {
 	if (modifiers[0] == 'h' && modifiers[1] == 'h')
-		parsing_datas->identifier = hh;
+		datas->identifier = hh;
 	else if (modifiers[0] == 'l' && modifiers[1] == 'l')
-		parsing_datas->identifier = ll;
+		datas->identifier = ll;
 	else if (modifiers[0] == 'h')
-		parsing_datas->identifier = h;
+		datas->identifier = h;
 	else if (modifiers[0] == 'l')
-		parsing_datas->identifier = l;
+		datas->identifier = l;
 	else if (modifiers[0] == 'j')
-		parsing_datas->identifier = j;
+		datas->identifier = j;
 	else if (modifiers[0] == 'z')
-		parsing_datas->identifier = z;
+		datas->identifier = z;
 }
 
-void	ft_get_modifiers(char **str, t_parse *parsing_datas)
+int		ft_get_modifiers(char **str, t_parse *datas)
 {
 	char	modifiers[3];
 	char	*flags;
@@ -65,41 +65,45 @@ void	ft_get_modifiers(char **str, t_parse *parsing_datas)
 	if (index > 0)
 		(*str)--;
 	modifiers[index] = '\0';
-	ft_get_modifiers2(modifiers, parsing_datas);
+	ft_get_modifiers2(modifiers, datas);
+	return (1);
+}
+
+t_parse	init_datas_struct(void)
+{
+	t_parse datas;
+
+	ft_bzero(&datas, sizeof(t_parse));
+	datas.precision = -1;
+	datas.converter = '0';
+	return (datas);
 }
 
 char	*ft_percentage_parsing(char *str, t_buffer *buff, va_list args)
 {
-	t_parse		parsing_datas;
-	short int	flag_modifier;
+	t_parse		datas;
 
-	flag_modifier = 0;
-	ft_bzero(&parsing_datas, sizeof(t_parse));
-	parsing_datas.precision = -1;
+	datas = init_datas_struct();
 	while (*str)
 	{
 		if (ft_isdigit(*str) && *str != '0')
-			parsing_datas.width = ft_atoi_custom(&str);
+			datas.width = ft_atoi_custom(&str, 0);
 		else if (*str == '.')
-		{
-			str++;
-			parsing_datas.precision = ft_atoi_custom(&str);
-		}
+			datas.precision = ft_atoi_custom(&str, 1);
 		else if (ft_char_in_str(FLAGS, *str))
-			ft_update_struct(*str, &parsing_datas);
-		else if (ft_char_in_str(MODIFIERS, *str) && flag_modifier == 0)
-		{
-			ft_get_modifiers(&str, &parsing_datas);
-			flag_modifier = 1;
-		}
+			ft_update_struct(*str, &datas);
+		else if (ft_char_in_str(MODIFIERS, *str) && datas.identifier == none)
+			ft_get_modifiers(&str, &datas);
 		else if (ft_char_in_str(CONVERTERS, *str))
 		{
-			parsing_datas.converter = *str;
-			break;
+			datas.converter = *str;
+			break ;
 		}
+		else
+			return (str - 1);
 		str++;
 	}
-//	ft_print(parsing_datas);
-	ft_manage_conv(parsing_datas, buff, args);
+	if (datas.converter != '0')
+		ft_manage_conv(datas, buff, args);
 	return (str);
 }

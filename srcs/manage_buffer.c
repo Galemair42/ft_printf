@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 14:10:51 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/11 18:25:58 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/15 20:06:46 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_putnchar_buff(t_buffer *buff, unsigned char c, int n)
 		i++;
 	}
 }
+
 void	ft_putstr_buff(t_buffer *buff, char *str)
 {
 	while (*str)
@@ -46,6 +47,7 @@ void	ft_putstrn_buff(t_buffer *buff, char *str, int n)
 		i++;
 	}
 }
+
 void	ft_clean_buff(t_buffer *buff)
 {
 	write(1, buff->buff, (buff->i));

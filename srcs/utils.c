@@ -6,17 +6,19 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 17:07:51 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/11 19:05:52 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/15 20:51:59 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_atoi_custom(char **str)
+int		ft_atoi_custom(char **str, int precision_flag)
 {
 	int		sign;
 	int		nb;
 
+	if (precision_flag == 1)
+		(*str)++;
 	nb = 0;
 	sign = 1;
 	while (**str == '\t' || **str == '\n' || **str == '\r' ||
@@ -37,7 +39,7 @@ int			ft_atoi_custom(char **str)
 	return (nb * sign);
 }
 
-char		get_rank(int n, int maj)
+char	get_rank(int n, int maj)
 {
 	char *minu;
 	char *maju;
@@ -48,6 +50,7 @@ char		get_rank(int n, int maj)
 		return (maju[n]);
 	return (minu[n]);
 }
+
 int		ft_strlenbytes(wchar_t *str)
 {
 	int size;
@@ -55,11 +58,12 @@ int		ft_strlenbytes(wchar_t *str)
 	size = 0;
 	while (*str)
 	{
-		size += get_char_size(*str);	
+		size += get_char_size(*str);
 		str++;
 	}
 	return (size);
 }
+
 int		get_char_size(wchar_t c)
 {
 	if (c <= 127)
@@ -68,6 +72,6 @@ int		get_char_size(wchar_t c)
 		return (2);
 	else if (c <= 65535)
 		return (3);
-	else 
+	else
 		return (4);
 }
