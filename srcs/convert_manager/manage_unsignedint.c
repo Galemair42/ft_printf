@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 14:46:49 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/12 16:59:58 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/15 11:59:42 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void		manage_unsignedint(t_parse *datas, t_buffer *buff, va_list args)
 		size++;
 	calc_uint_flags(size, datas);
 	manage_uint_flag(datas, buff, value, base);
-	if (!(value == 0 && (precision >= 0)))
+	if (!(value == 0 && (precision >= 0)) && !(value == 0 && datas->hashtag == 1))
 		datas->converter == 'X' ? ft_uputnbr_buff(value, buff, base, 1) :
 		ft_uputnbr_buff(value, buff, base, 0);
 	if (datas->minus == 1)
