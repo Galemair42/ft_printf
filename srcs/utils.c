@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 17:07:51 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/15 20:51:59 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/16 14:31:40 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,15 @@ int		get_char_size(wchar_t c)
 		return (3);
 	else
 		return (4);
+}
+
+char	*manage_undefined_converter(t_parse *datas, char *str, t_buffer *buff)
+{
+	if (datas->minus == 0)
+		ft_putnchar_buff(buff, datas->zero == 1 ? '0' : ' ',
+		(datas->width - 1));
+	ft_putnchar_buff(buff, *str, 1);
+	if (datas->minus == 1)
+		ft_putnchar_buff(buff, ' ', (datas->width - 1));
+	return (str);
 }

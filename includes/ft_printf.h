@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 13:49:14 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/15 21:08:55 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/17 18:24:43 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int							ft_atoi_custom(char **str,
 char						get_rank(int n, int maj);
 int							get_char_size(wchar_t value);
 int							ft_strlenbytes(wchar_t *str);
+char						*manage_undefined_converter(t_parse *datas,
+							char *str, t_buffer *buff);
 /*
 **---------------------------debug.c---------------------------------
 */

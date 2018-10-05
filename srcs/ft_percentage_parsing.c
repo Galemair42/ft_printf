@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 17:14:21 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/15 22:38:44 by galemair         ###   ########.fr       */
+/*   Updated: 2018/05/16 14:31:28 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	*ft_percentage_parsing(char *str, t_buffer *buff, va_list args)
 			break ;
 		}
 		else
-			return (str - 1);
+			return (manage_undefined_converter(&datas, str, buff));
 		str++;
 	}
 	if (datas.converter != '0')
